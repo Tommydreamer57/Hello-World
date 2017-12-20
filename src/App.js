@@ -38,16 +38,32 @@ let arr = [
   },
   {
     letter: 33
-  }]
+  }
+]
+
+let colors = [
+  '',
+  '#222',
+  '#500',
+  '#050',
+  '#005'
+]
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      letters: []
+      letters: [],
+      color: ''
     }
   }
   componentDidMount() {
+    let background = ''
+    colors.map((color, i) => {
+      if (this.state.color === color) {
+        background = colors[i + 1] || colors[2]
+      }
+    })
     arr.map((letterObject, index) => {
       return function (timeout) {
         setTimeout(() => {
@@ -58,7 +74,8 @@ class App extends Component {
           // console.log(timeout)
           letters.push(<div className="letter">{String.fromCharCode(letterObject.letter)}</div>)
           this.setState({
-            letters
+            letters,
+            color: background
           })
         }, timeout * 330)
       }.call(this, index)
@@ -66,7 +83,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ background: this.state.color }}>
         {this.state.letters}
         {
           this.state.letters.length >= 12 ?
