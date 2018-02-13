@@ -38,15 +38,20 @@ let arr = [
   },
   {
     letter: 33
+  },
+  {
+    letter: 0
   }
 ]
 
 let colors = [
   '',
-  '#222',
-  '#500',
-  '#050',
-  '#005'
+  '#800',
+  '#880',
+  '#080',
+  '#088',
+  '#008',
+  '#808'
 ]
 
 class App extends Component {
@@ -68,7 +73,7 @@ class App extends Component {
       return function (timeout) {
         setTimeout(() => {
           let letters = this.state.letters.slice()
-          if (letters.length >= 12) {
+          if (letters.length >= 13) {
             letters = []
           }
           // console.log(timeout)
@@ -86,7 +91,7 @@ class App extends Component {
       <div className="App" style={{ background: this.state.color }}>
         {this.state.letters}
         {
-          this.state.letters.length >= 12 ?
+          this.state.letters.length >= 13 ?
             this.componentDidMount()
             :
             null
